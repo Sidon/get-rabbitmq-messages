@@ -99,8 +99,11 @@ headers = {
 }
 
 response = requests.post(url, headers=headers, data=payload_data, auth=auth)
+separator = f"\n{80 * '='}"
 
 with open(config['outputfile'], 'w') as file_handler:
     for message in response.json():
-        file_handler.write("{}\n\n".format(message['payload']))
+        output_message = f"\n{message['payload']}"
+        file_handler.write(output_message)
+        file_handler.write(separator)
 
