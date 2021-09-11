@@ -67,6 +67,14 @@ arg_parser.add_argument(
     help='file for output messages.',
 )
 
+arg_parser.add_argument(
+    '--separator',
+    '-s',
+    action='store',
+    default=None,
+    help='Character for line separator.',
+)
+
 
 args = arg_parser.parse_args()
 
@@ -83,7 +91,9 @@ else:
         'user': args.user,
         'password': args.password,
         'outputfile': args.outputfile,
+        'separator': args.separator,
     }
+
 
 try:
     url = f"{config['url']}/api/queues/{config['vhost']}/{config['queue']}/get"
@@ -99,11 +109,14 @@ headers = {
 }
 
 response = requests.post(url, headers=headers, data=payload_data, auth=auth)
-separator = f"\n{80 * '='}"
+separator=None
+if config['separator']:
+    separator = f"\n{80 * config['separator']}"
 
 with open(config['outputfile'], 'w') as file_handler:
     for message in response.json():
         output_message = f"\n{message['payload']}"
         file_handler.write(output_message)
-        file_handler.write(separator)
+        if separator:
+            file_handler.write(separator)
 
