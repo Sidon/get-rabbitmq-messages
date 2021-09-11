@@ -1,0 +1,20 @@
+url:
+  http://127.0.0.1:15672
+
+vhost:
+  '%2F'
+
+queue:
+  NOTIFY_INTENTIONS
+
+count:
+  2
+
+user:
+  guest
+
+password:
+  guest
+
+outputfile:
+  ./messages
