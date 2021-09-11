@@ -102,5 +102,5 @@ response = requests.post(url, headers=headers, data=payload_data, auth=auth)
 
 with open(config['outputfile'], 'w') as file_handler:
     for message in response.json():
-        file_handler.write("{}\n".format(message['payload']))
+        file_handler.write("{}\n\n".format(message['payload']))
 
