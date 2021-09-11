@@ -20,4 +20,4 @@ outputfile:
   ./messages
 
 separator:
-  '='
+  null

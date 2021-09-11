@@ -109,7 +109,7 @@ headers = {
 }
 
 response = requests.post(url, headers=headers, data=payload_data, auth=auth)
-separator=None
+separator = '\n'
 if config['separator']:
     separator = f"\n{80 * config['separator']}"
 
@@ -117,6 +117,5 @@ with open(config['outputfile'], 'w') as file_handler:
     for message in response.json():
         output_message = f"\n{message['payload']}"
         file_handler.write(output_message)
-        if separator:
-            file_handler.write(separator)
+        file_handler.write(separator)
 
