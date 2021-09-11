@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import argparse
 import requests
 import csv
@@ -78,6 +79,7 @@ else:
         'url': args.url,
         'vhost': args.vhost,
         'queue': args.queue,
+        'count': args.count,
         'user': args.user,
         'password': args.password,
         'outputfile': args.outputfile,
@@ -85,9 +87,10 @@ else:
 
 try:
     url = f"{config['url']}/api/queues/{config['vhost']}/{config['queue']}/get"
-    payload_data = str({"count": config['count'], "ackmode": "ack_requeue_true", "encoding": "auto", "truncate": 50000})
+    payload_data = f"{{'count': {config['count']}, 'ackmode': 'ack_requeue_true', 'encoding': 'auto', 'truncate': 50000}}"
     auth = (config['user'], config['password'])
 except Exception as error:
+    print(config)
     print("An exception occurred: ", error)
     raise
 
