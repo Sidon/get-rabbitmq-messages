@@ -3,6 +3,8 @@ import argparse
 import requests
 import csv
 import yaml
+import json
+import pprint
 
 arg_parser = argparse.ArgumentParser(description='Get rabbitmq messages', allow_abbrev=False)
 
@@ -115,7 +117,7 @@ if config['separator']:
 
 with open(config['outputfile'], 'w') as file_handler:
     for message in response.json():
-        output_message = f"\n{message['payload']}"
+        output_message = f"\n{pprint.pformat(message['payload'], indent=4)}"
         file_handler.write(output_message)
         file_handler.write(separator)
 
