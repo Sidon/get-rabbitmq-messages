@@ -21,3 +21,6 @@ outputfile:
 
 separator:
   null
+
+mode:
+  full

@@ -77,6 +77,14 @@ arg_parser.add_argument(
     help='Character for line separator.',
 )
 
+arg_parser.add_argument(
+    '--mode',
+    '-m',
+    action='store',
+    default='payload',
+    help='full = whole message, payload = just payload',
+)
+
 
 args = arg_parser.parse_args()
 
@@ -94,6 +102,7 @@ else:
         'password': args.password,
         'outputfile': args.outputfile,
         'separator': args.separator,
+        'mode': args.mode,
     }
 
 
@@ -101,6 +110,7 @@ try:
     url = f"{config['url']}/api/queues/{config['vhost']}/{config['queue']}/get"
     payload_data = f"{{'count': {config['count']}, 'ackmode': 'ack_requeue_true', 'encoding': 'auto', 'truncate': 50000}}"
     auth = (config['user'], config['password'])
+    mode = config['mode']
 except Exception as error:
     print(config)
     print("An exception occurred: ", error)
@@ -116,8 +126,9 @@ if config['separator']:
     separator = f"\n{80 * config['separator']}"
 
 with open(config['outputfile'], 'w') as file_handler:
-    for message in response.json():
-        output_message = f"\n{pprint.pformat(message['payload'], indent=4)}"
+    for msg in response.json():
+        message = msg if mode=='full' else msg['payload']
+        output_message = f"\n{pprint.pformat(message, indent=4)}"
         file_handler.write(output_message)
         file_handler.write(separator)
 
