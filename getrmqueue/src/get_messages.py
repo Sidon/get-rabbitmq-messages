@@ -95,10 +95,8 @@ def build_data_args(__args, __arg_parser):
         data_config[key] = __config_args(key, __args, __arg_parser, data_config)
 
     try:
-        data_config[
-            'url'] = f"{data_config['url']}/api/queues/{data_config['vhost']}/{data_config['queue']}/get"
-        data_config[
-            'payload_data'] = f"{{'count': {data_config['count']}, 'ackmode': 'ack_requeue_true', 'encoding': 'auto', 'truncate': 50000}}"
+        data_config['url'] = f"{data_config['url']}/api/queues/{data_config['vhost']}/{data_config['queue']}/get"
+        data_config['payload_data'] = f"{{'count': {data_config['count']}, 'ackmode': 'ack_requeue_true', 'encoding': 'auto', 'truncate': 50000}}"
         data_config['auth'] = (data_config['user'], data_config['password'])
         data_config['headers'] = {'content-type': 'application/json', }
     except Exception as error:
