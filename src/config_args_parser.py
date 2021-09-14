@@ -83,7 +83,13 @@ def config_parser(__arg_parser):
     )
 
 
-def build_data_args(__args, __arg_parser):
+# def build_data_args(__args, __arg_parser):
+def build_data_args():
+    __arg_parser = argparse.ArgumentParser(description='Get rabbitmq messages', allow_abbrev=False)
+    config_parser(__arg_parser)
+    __args = __arg_parser.parse_args()
+    # data_args = config_args_parser.build_data_args(__args, arg_parser)
+
     data_config = {}
 
     if __args.configfile:
