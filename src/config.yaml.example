@@ -8,6 +8,6 @@ password:
   guest
 
 queue:
-  DLQ
+  NOTIFY_INTENTIONS
 
 
