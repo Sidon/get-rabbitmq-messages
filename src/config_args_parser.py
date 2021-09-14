@@ -1,6 +1,5 @@
-#!/usr/bin/python
-import argparse, requests, csv, yaml, json, pprint
-
+import argparse
+import yaml
 
 __config_data = {}
 
@@ -95,8 +94,8 @@ def build_data_args(__args, __arg_parser):
         data_config[key] = __config_args(key, __args, __arg_parser, data_config)
 
     try:
-        data_config['url'] = f"{data_config['url']}/api/queues/{data_config['vhost']}/{data_config['queue']}/get"
         data_config['payload_data'] = f"{{'count': {data_config['count']}, 'ackmode': 'ack_requeue_true', 'encoding': 'auto', 'truncate': 50000}}"
+        data_config['url'] = f"{data_config['url']}/api/queues/{data_config['vhost']}/{data_config['queue']}/get"
         data_config['auth'] = (data_config['user'], data_config['password'])
         data_config['headers'] = {'content-type': 'application/json', }
     except Exception as error:
@@ -104,26 +103,3 @@ def build_data_args(__args, __arg_parser):
         raise
 
     return data_config
-
-
-def save_messages(data_args):
-    response = requests.post(data_args['url'], headers=data_args['headers'], data=data_args['payload_data'], auth=data_args['auth'])
-    separator = '\n'
-    if data_args['separator']:
-        separator = f"\n{80 * data_args['separator']}"
-
-    with open(data_args['outputfile'], 'w') as file_handler:
-        for msg in response.json():
-            message = msg if data_args['mode'] == 'full' else msg['payload']
-            output_message = f"\n{pprint.pformat(message, indent=4)}"
-            file_handler.write(output_message)
-            file_handler.write(separator)
-
-
-if __name__ == "__main__":
-    arg_parser = argparse.ArgumentParser(description='Get rabbitmq messages', allow_abbrev=False)
-    config_parser(arg_parser)
-    __args = arg_parser.parse_args()
-    data_args = build_data_args(__args, arg_parser)
-    save_messages(data_args)
-
