@@ -4,7 +4,7 @@
 Description
 ***********
 
-Get RabbitMQ messages from a specific queue to a file.
+Get RabbitMQ messages from a specific queue to a file, via api.
 
 
 Requirements
@@ -28,7 +28,7 @@ Install
 
 ::
 
-    pip install getrabbitapi
+    pip install getrabbitgetapi
 
 
 Usage
@@ -36,9 +36,9 @@ Usage
 
 ::
 
-    $ rabbitapi get_queue -h
-    usage: rabbitapi get_queue [-h] [-f CONFIGFILE] [--url URL] [-v VHOST] [--user USER] [--password PASSWORD] [--outputfile OUTPUTFILE]
-                           [--separator SEPARATOR] [--mode MODE] [-q QUEUE] [-c COUNT]
+    ❯ rabbitgetapi getqueue -h
+    usage: rabbitgetapi getqueue [-h] [-f CONFIGFILE] [--url URL] [-v VHOST] [--user USER] [--password PASSWORD] [--outputfile OUTPUTFILE]
+                                 [--separator SEPARATOR] [--mode MODE] [-q QUEUE] [-c COUNT]
 
     optional arguments:
       -h, --help            show this help message and exit
@@ -58,7 +58,7 @@ Usage
       -q QUEUE, --queue QUEUE
                             The queue from where the messages will be obtained.
       -c COUNT, --count COUNT
-                            controls the maximum number of messages to get. Default=5.
+                            controls the maximum number of messages to get. Default=10.
 
 :Authors:
     Sidon Duarte,
