@@ -12,7 +12,7 @@ def __config_args(key_arg, __args, __arg_parser, __config_data):
     return __config_data[key_arg]
 
 
-def config_parser(__arg_parser):
+def queue_args(__arg_parser):
     __arg_parser.add_argument(
         '-f',
         '--configfile',
@@ -84,12 +84,12 @@ def config_parser(__arg_parser):
     )
 
 
-# def build_data_args(__args, __arg_parser):
-def build_data_args():
+# def build_data_queue_args(__args, __arg_parser):
+def build_data_queue_args():
     __arg_parser = argparse.ArgumentParser(description='Get rabbitmq messages', allow_abbrev=False)
-    config_parser(__arg_parser)
+    queue_args(__arg_parser)
     __args = __arg_parser.parse_args()
-    # data_args = config_args_parser.build_data_args(__args, arg_parser)
+    # data_args = config_args_parser.build_data_queue_args(__args, arg_parser)
 
     data_config = {}
 

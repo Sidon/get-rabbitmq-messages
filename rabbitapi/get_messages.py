@@ -1,6 +1,6 @@
 #!/usr/bin/python
-import argparse, requests, pprint
-import config_args_parser
+import requests, pprint
+from rabbitapi import build_parser
 
 
 def save_messages(url, headers, data, auth, output_file, mode, message_separator):
@@ -15,7 +15,7 @@ def save_messages(url, headers, data, auth, output_file, mode, message_separator
 
 
 def main():
-    data_args = config_args_parser.build_data_args()
+    data_args = build_parser.build_data_queue_args()
     if data_args['separator']:
         separator = f"\n{80 * data_args['separator']}"
     else:

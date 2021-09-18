@@ -17,7 +17,7 @@ from typing import Any, List, Tuple
 from importlib_metadata import entry_points
 from importlib_metadata import version
 
-import twine
+import rabbitapi
 
 args = argparse.Namespace()
 
@@ -40,12 +40,12 @@ def dep_versions() -> str:
 
 
 def dispatch(argv: List[str]) -> Any:
-    registered_commands = entry_points(group="twine.registered_commands")
-    parser = argparse.ArgumentParser(prog="twine")
+    registered_commands = entry_points(group="rabbitapi.registered_commands")
+    parser = argparse.ArgumentParser(prog="rabbitapi")
     parser.add_argument(
         "--version",
         action="version",
-        version="%(prog)s version {} ({})".format(twine.__version__, dep_versions()),
+        version="%(prog)s version {} ({})".format(rabbitapi.__version__, dep_versions()),
     )
     parser.add_argument(
         "--no-color",
