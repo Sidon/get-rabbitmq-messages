@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright 2021 Sidon Duarte
+# Copyleft 2021 Sidon Duarte
 #
 import http
 import sys
@@ -8,9 +8,9 @@ from typing import Any
 import colorama
 import requests
 
-from rabbitapi import cli
-from rabbitapi import exceptions
-from rabbitapi import build_parser
+from rabbitgetapi import cli
+from rabbitgetapi import exceptions
+from rabbitgetapi import build_parser
 
 
 def main() -> Any:

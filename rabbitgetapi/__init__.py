@@ -1,4 +1,4 @@
-# Copyright 2021 Sidon Duarte and individual contributors
+# Copyleft 2021 Sidon Duarte and contributors
 
 
 __all__ = (
@@ -16,7 +16,7 @@ __copyright__ = "Copyright 2021 Sidon Duarte and individual contributors"
 
 import importlib_metadata
 
-metadata = importlib_metadata.metadata("getrmqapi-sdn")
+metadata = importlib_metadata.metadata("rabbitgetapi-sdn")
 
 __title__ = metadata["name"]
 __summary__ = metadata["summary"]

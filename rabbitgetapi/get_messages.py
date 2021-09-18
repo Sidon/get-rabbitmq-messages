@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import requests, pprint
-from rabbitapi import build_parser
+from rabbitgetapi import build_parser
 
 
 def save_messages(url, headers, data, auth, output_file, mode, message_separator):
